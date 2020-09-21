@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { Text, View } from 'react-native';
-import Teclado from './Teclado';
+import { Teclado } from './Teclado';
 
 export default function Calculadora(props: ICalculadora) {
-  const [display, displaySet] = React.useState(0);
-  const [memoria, memoriaSet] = React.useState(0);
+  const [display, displaySet] = React.useState<number>(0);
+  const [memoria, memoriaSet] = React.useState<number>(0);
   const [operacao, operacaoSet] = React.useState('');
   const widthSize = (props.size ?? 120) - 8;
 
-  function tecla(valor) {
+  function tecla(valor: string) {
     if (valor == 'C') {
       displaySet(0);
       memoriaSet(0);
@@ -28,7 +28,7 @@ export default function Calculadora(props: ICalculadora) {
         displaySet(memoria / display);
       }
     } else {
-      displaySet(display * 10 + valor);
+      displaySet(display * 10 + parseInt(valor));
     }
   }
 
@@ -62,6 +62,6 @@ export default function Calculadora(props: ICalculadora) {
   );
 }
 
-interface ICalculadora {
-  size: Number;
+export interface ICalculadora {
+  size: number;
 }

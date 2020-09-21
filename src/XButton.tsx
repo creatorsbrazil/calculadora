@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { Text, View } from 'react-native';
 
-export default function XButton(props: IXButton) {
+/**
+ * Modelo de Botão da calculadora 
+ * @param props propriedades do botão
+ */
+export function XButton(props: IXButton) {
   const margin = (props.size ?? 30) / 15;
   const size = (props.size ?? 30) - 2 * margin;
 
@@ -25,8 +29,17 @@ export default function XButton(props: IXButton) {
   );
 }
 
-interface IXButton {
+export interface IXButton {
+  /**
+   * Tamanho bo botão
+   */
   size?: number;
+  /**
+   * Texto do botão
+  */
   title: string;
+  /**
+   * Ação do botão
+   */
   onPress: (key) => void;
 }

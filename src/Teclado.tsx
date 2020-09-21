@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Text, View, Button } from 'react-native';
-import XButton from './XButton';
+import { View } from 'react-native';
+import { XButton } from './XButton';
 
-export default function Teclado(props: ITeclado) {
-  function tecla(key) {
+export function Teclado(props: ITeclado) {
+  function tecla(key: string) {
     props.onKey(key);
   }
 
@@ -39,7 +39,7 @@ export default function Teclado(props: ITeclado) {
   );
 }
 
-interface ITeclado {
-  size?: Number;
-  onKey: (key) => void;
+export interface ITeclado {
+  size?: number;
+  onKey: (key: string) => void;
 }

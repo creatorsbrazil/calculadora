@@ -25,10 +25,6 @@ export default function Calculadora(props: ICalculadora) {
       displaySet(Math.sqrt(display));
     } else if (valor == '∏') {
       displaySet(Math.PI);
-    } else if (isNaN(+valor)) {
-      memoriaSet(display);
-      operacaoSet(valor);
-      displaySet(0);
     } else if (valor == '=') {
       if (operacao == '+') {
         displaySet(memoria + display);
@@ -39,6 +35,10 @@ export default function Calculadora(props: ICalculadora) {
       } else if (operacao == '/') {
         displaySet(memoria / display);
       }
+    } else if (isNaN(+valor)) {
+      memoriaSet(display);
+      operacaoSet(valor);
+      displaySet(0);
     } else {
       displaySet(display * 10 + parseInt(valor));
     }

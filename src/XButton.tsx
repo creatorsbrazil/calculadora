@@ -1,28 +1,32 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
+import { GestureResponderEvent, Text, View } from 'react-native';
 
 /**
  * Modelo de Botão da calculadora 
  * @param props propriedades do botão
  */
 export function XButton(props: IXButton) {
-  const margin = (props.size ?? 30) / 15;
+  const margin = Math.ceil((props.size ?? 30) / 15);
   const size = (props.size ?? 30) - 2 * margin;
+
+  const onPress = (event: GestureResponderEvent) => {
+    props.onPress(props.title);
+  };
 
   return (
     <View>
       <Text
         style={{
           borderRadius: size / 2,
-          textAlign: 'center',
           fontSize: (size * 2) / 3,
           height: size,
           width: size,
-          color: 'white',
           margin: margin,
+          textAlign: 'center',
+          color: 'white',
           backgroundColor: 'blue'
         }}
-        onPress={props.onPress}>
+        onPress={onPress}>
         {props.title}
       </Text>
     </View>
@@ -41,5 +45,5 @@ export interface IXButton {
   /**
    * Ação do botão
    */
-  onPress: (key) => void;
+  onPress: (key: string) => void;
 }

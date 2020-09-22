@@ -13,3 +13,5 @@ http://fabioferreira.eng.br/calculadora/
 
 react-native run-android --variant=release
 
+https://github.com/react-native-community/hooks#usedimensions
+

@@ -79,7 +79,7 @@ import com.android.build.OutputFile
 
 project.ext.react = [
     enableHermes: false,  // clean and rebuild if changing
-    entryFile: "index.android.js",
+    entryFile: "index.native.js",
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -133,8 +133,8 @@ android {
         applicationId "com.impactro.calculadora"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 5
-        versionName "1.0.5"
+        versionCode 7
+        versionName "1.0.7"
     }
     splits {
         abi {

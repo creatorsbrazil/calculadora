@@ -12,6 +12,8 @@ serve -s build
 http://fabioferreira.eng.br/calculadora/
 
 react-native run-android --variant=release
+cd android && gradlew assembleRelease
+cd android && gradlew bundleRelease
 
 https://github.com/react-native-community/hooks#usedimensions
 

@@ -13,6 +13,21 @@ export function XButton(props: IXButton) {
     props.onPress(props.title);
   };
 
+  let cor: string;
+
+  if (isNaN(+props.title)) {
+    if (props.title === "C") {
+      cor = "red";
+    } else if (props.title === "=") {
+      cor = "orange";
+    } else {
+      cor = "green";
+    }
+  }
+  else {
+    cor = "blue";
+  }
+
   return (
     <View>
       <Text
@@ -24,7 +39,7 @@ export function XButton(props: IXButton) {
           margin: margin,
           textAlign: 'center',
           color: 'white',
-          backgroundColor: 'blue'
+          backgroundColor: cor
         }}
         onPress={onPress}>
         {props.title}

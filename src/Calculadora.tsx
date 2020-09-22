@@ -17,7 +17,15 @@ export default function Calculadora(props: ICalculadora) {
       displaySet(0);
       memoriaSet(0);
       operacaoSet('');
-    } else if (valor == '+' || valor == '-' || valor == 'X' || valor == '/') {
+    } else if (valor == '1/') {
+      displaySet(1 / display);
+    } else if (valor == '^2') {
+      displaySet(display * display);
+    } else if (valor == '√') {
+      displaySet(Math.sqrt(display));
+    } else if (valor == '∏') {
+      displaySet(Math.PI);
+    } else if (isNaN(+valor)) {
       memoriaSet(display);
       operacaoSet(valor);
       displaySet(0);
@@ -40,7 +48,7 @@ export default function Calculadora(props: ICalculadora) {
     <View style={[style.container, { width: width, height: height }]}>
       <Text style={style.acc}>{memoria} {operacao}</Text>
       <Text style={style.display}>{display}</Text>
-      <Teclado onKey={tecla} size={keysSize} />
+      <Teclado onKey={tecla} size={keysSize} extraRow={height > width} />
     </View>
   );
 }
@@ -48,7 +56,7 @@ export default function Calculadora(props: ICalculadora) {
 const style = StyleSheet.create({
   acc: {
     fontSize: 14,
-    top: 6,
+    top: 4,
     right: 5,
     position: 'absolute',
     backgroundColor: '#ccc',

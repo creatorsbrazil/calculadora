@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { XButton } from './XButton';
+import { XButton } from './xbutton';
 
 export function Teclado(props: ITeclado) {
   function tecla(key: string) {

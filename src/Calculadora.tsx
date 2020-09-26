@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, StatusBar } from 'react-native';
-import { Teclado } from './Teclado';
+import { Teclado } from './teclado';
 
-export default function Calculadora(props: ICalculadora) {
-  const [display, displaySet] = React.useState<string>("0");
-  const [memoria, memoriaSet] = React.useState<number>(0);
+export function Calculadora(props: ICalculadora) {
+
+  const [display, displaySet] = React.useState("0");
+  const [memoria, memoriaSet] = React.useState(0);
   const [operacao, operacaoSet] = React.useState('');
   const statusBarHeight = StatusBar.currentHeight;
   const width = Math.ceil(props.width ?? 120) - 4; // margin total

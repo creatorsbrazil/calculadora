@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { GestureResponderEvent, Text, View } from 'react-native';
+import { GestureResponderEvent, Text, View, TouchableOpacity } from 'react-native';
 
 /**
  * Modelo de Botão da calculadora 
@@ -20,6 +20,8 @@ export function XButton(props: IXButton) {
       cor = "red";
     } else if (props.title === "=") {
       cor = "orange";
+    } else if (props.title === ".") {
+      cor = "blue";
     } else {
       cor = "green";
     }
@@ -29,22 +31,27 @@ export function XButton(props: IXButton) {
   }
 
   return (
-    <View>
-      <Text
-        style={{
-          borderRadius: size / 2,
-          fontSize: (size * 2) / 3,
-          height: size,
-          width: size,
-          margin: margin,
-          textAlign: 'center',
-          color: 'white',
-          backgroundColor: cor
-        }}
-        onPress={onPress}>
-        {props.title}
-      </Text>
-    </View>
+    <TouchableOpacity
+      onPress={onPress}>
+      <View style={{
+        borderRadius: size / 4,
+        height: size,
+        width: size,
+        margin: margin,
+        backgroundColor: cor,
+        elevation: 5
+      }}
+      >
+        <Text
+          style={{
+            fontSize: (size * 2) / 3,
+            textAlign: 'center',
+            color: 'white',
+          }}>
+          {props.title}
+        </Text>
+      </View>
+    </TouchableOpacity>
   );
 }
 

@@ -3,51 +3,71 @@ import { Text, View, StyleSheet, StatusBar } from 'react-native';
 import { Teclado } from './Teclado';
 
 export default function Calculadora(props: ICalculadora) {
-  const [display, displaySet] = React.useState<number>(0);
+  const [display, displaySet] = React.useState<string>("0");
   const [memoria, memoriaSet] = React.useState<number>(0);
   const [operacao, operacaoSet] = React.useState('');
   const statusBarHeight = StatusBar.currentHeight;
   const width = Math.ceil(props.width ?? 120) - 4; // margin total
   const height = Math.ceil(props.height ?? 120) - 4 - statusBarHeight;
-  const heightUtil = height - 50; // display size 
+  const heightUtil = height - 90; // display size 
   const keysSize = ((width > heightUtil ? heightUtil : width) - 10) / 4; // 10 = margin + border + padding
 
   function tecla(valor: string) {
     if (valor == 'C') {
-      displaySet(0);
+      displaySet("0");
       memoriaSet(0);
       operacaoSet('');
     } else if (valor == '1/') {
-      displaySet(1 / display);
+      toDisplay(1 / (+display));
     } else if (valor == '^2') {
-      displaySet(display * display);
+      toDisplay(+display * +display);
     } else if (valor == '√') {
-      displaySet(Math.sqrt(display));
-    } else if (valor == '∏') {
-      displaySet(Math.PI);
-    } else if (valor == '=') {
-      if (operacao == '+') {
-        displaySet(memoria + display);
-      } else if (operacao == '-') {
-        displaySet(memoria - display);
-      } else if (operacao == 'X') {
-        displaySet(memoria * display);
-      } else if (operacao == '/') {
-        displaySet(memoria / display);
+      toDisplay(Math.sqrt(+display));
+    } else if (valor == '.') {
+      if (display.indexOf('.') === -1) {
+        displaySet(display + valor);
+      }
+    } else if (valor === '=') {
+      if (operacao === '+') {
+        toDisplay(memoria + +display);
+      } else if (operacao === '-') {
+        toDisplay(memoria - +display);
+      } else if (operacao === 'X') {
+        toDisplay(memoria * +display);
+      } else if (operacao === '/') {
+        toDisplay(memoria / +display);
       }
     } else if (isNaN(+valor)) {
-      memoriaSet(display);
+      memoriaSet(+display);
       operacaoSet(valor);
-      displaySet(0);
+      displaySet('0');
     } else {
-      displaySet(display * 10 + parseInt(valor));
+      if (display === '0') {
+        displaySet(valor);
+      } else {
+        displaySet(display + valor);
+      }
     }
+  }
+
+  function toDisplay(value: number) {
+    let strValue = value.toFixed(9);
+    let i = strValue.length - 1;
+    while (i > 0) {
+      if (strValue.substr(i, 1) === '0') {
+        strValue = strValue.substr(0, i)
+      } else {
+        break;
+      }
+      i--;
+    }
+    displaySet(strValue);
   }
 
   return (
     <View style={[style.container, { width: width, height: height }]}>
-      <Text style={style.acc}>{memoria} {operacao}</Text>
-      <Text style={style.display}>{display}</Text>
+      <Text style={style.acc} numberOfLines={1} >{memoria} {operacao}</Text>
+      <Text style={style.display} numberOfLines={1}>{display}</Text>
       <Teclado onKey={tecla} size={keysSize} extraRow={height > width} />
     </View>
   );
@@ -55,11 +75,10 @@ export default function Calculadora(props: ICalculadora) {
 
 const style = StyleSheet.create({
   acc: {
-    fontSize: 14,
+    fontSize: 20,
     top: 4,
     right: 5,
     position: 'absolute',
-    backgroundColor: '#ccc',
     zIndex: 1
   },
   container: {
@@ -68,14 +87,17 @@ const style = StyleSheet.create({
     borderColor: 'blue',
     borderWidth: 2,
     borderRadius: 10,
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   display: {
+    paddingHorizontal: 3,
     textAlignVertical: "bottom",
-    fontSize: 30,
-    height: 50,
+    fontSize: 50,
+    height: 80,
+    borderRadius: 7,
     backgroundColor: '#ccc',
     textAlign: 'right',
+    marginBottom: 10
   }
 });
 

@@ -10,10 +10,10 @@ export function Teclado(props: ITeclado) {
   const size = (props.size ?? 30);
 
   const extraKeys = <View style={props.extraRow ? styles.rowContainer : styles.colContainer}>
+    <XButton title="C" size={size} onPress={tecla} />
     <XButton title="1/" size={size} onPress={tecla} />
     <XButton title="^2" size={size} onPress={tecla} />
     <XButton title="√" size={size} onPress={tecla} />
-    <XButton title="∏" size={size} onPress={tecla} />
   </View>
 
   return (
@@ -39,7 +39,7 @@ export function Teclado(props: ITeclado) {
           <XButton title="X" size={size} onPress={tecla} />
         </View>
         <View style={styles.rowContainer}>
-          <XButton title="C" size={size} onPress={tecla} />
+          <XButton title="." size={size} onPress={tecla} />
           <XButton title="0" size={size} onPress={tecla} />
           <XButton title="=" size={size} onPress={tecla} />
           <XButton title="/" size={size} onPress={tecla} />

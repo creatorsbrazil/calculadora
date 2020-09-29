@@ -1,6 +1,6 @@
 {
   "name": "calculadora",
-  "version": "0.0.7",
+  "version": "1.0.8",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -9,6 +9,7 @@
     "ios": "react-native run-ios",
     "test": "jest",
     "lint": "eslint .",
+    "adb-reverse": "adb kill-server & adb start-server & adb reverse tcp:8081 tcp:8081",
     "web-build": "react-scripts server -s build",
     "android-build": "react-native run-android --variant=release"
   },

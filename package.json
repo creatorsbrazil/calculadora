@@ -1,48 +1,27 @@
 {
-  "name": "calculadora",
-  "version": "1.0.8",
-  "private": true,
+  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "android": "react-native run-android",
-    "web": "react-scripts start",
-    "start": "react-native start",
-    "ios": "react-native run-ios",
-    "test": "jest",
-    "lint": "eslint .",
-    "adb-reverse": "adb kill-server & adb start-server & adb reverse tcp:8081 tcp:8081",
-    "web-build": "react-scripts server -s build",
-    "android-build": "react-native run-android --variant=release"
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject"
   },
   "dependencies": {
     "@react-native-community/hooks": "^2.6.0",
+    "expo": "~39.0.2",
+    "expo-status-bar": "~1.0.2",
     "react": "16.13.1",
-    "react-dom": "^16.13.1",
-    "react-native": "0.63.2",
-    "react-native-web": "^0.13.9",
-    "react-scripts": "^3.4.3"
+    "react-dom": "16.13.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.3.tar.gz",
+    "react-native-web": "~0.13.12"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "@babel/runtime": "^7.8.4",
-    "@react-native-community/eslint-config": "^1.1.0",
-    "@types/react-native": "^0.63.11",
-    "eslint": "^6.5.1",
-    "metro-react-native-babel-preset": "^0.59.0",
-    "react-test-renderer": "16.13.1"
+    "react-native-web": "~0.13.7",
+    "@types/react": "~16.9.35",
+    "@types/react-dom": "~16.9.8",
+    "@types/react-native": "~0.63.2",
+    "typescript": "~3.9.5"
   },
-  "jest": {
-    "preset": "react-native"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "private": true
 }

@@ -7,9 +7,8 @@ export function Calculadora(props: ICalculadora) {
   const [display, displaySet] = React.useState("0");
   const [memoria, memoriaSet] = React.useState(0);
   const [operacao, operacaoSet] = React.useState('');
-  const statusBarHeight = StatusBar.currentHeight;
   const width = Math.ceil(props.width ?? 120) - 4; // margin total
-  const height = Math.ceil(props.height ?? 120) - 4 - statusBarHeight;
+  const height = Math.ceil(props.height ?? 120) - 4;
   const heightUtil = height - 90; // display size 
   const keysSize = ((width > heightUtil ? heightUtil : width) - 10) / 4; // 10 = margin + border + padding
 
@@ -61,6 +60,9 @@ export function Calculadora(props: ICalculadora) {
         break;
       }
       i--;
+    }
+    if (strValue.endsWith(".")) {
+      strValue = strValue.substring(0, strValue.length - 1);
     }
     displaySet(strValue);
   }

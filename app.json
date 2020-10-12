@@ -24,7 +24,7 @@
     },
     "android": {
       "package": "com.impactro.calculadora",
-      "versionCode": 10,
+      "versionCode": 11,
       "permissions":[],
       "googleServicesFile": "./google-services.json"
     }
